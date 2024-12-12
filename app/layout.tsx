@@ -1,6 +1,8 @@
 import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
+
+import { ModalProvider } from '@/providers/modal-provider';
 import './globals.css';
 
 const geistSans = localFont({
@@ -30,6 +32,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
+          <ModalProvider />
           {children}
         </body>
       </html>

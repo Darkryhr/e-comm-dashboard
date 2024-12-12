@@ -1,16 +1,14 @@
 'use client';
 
-import { Modal } from '@/components/ui/modal';
+import { useShopModal } from '@/hooks/use-shop-modal';
+import { useEffect } from 'react';
 
 export default function Home() {
-  return (
-    <div className='p-4'>
-      <Modal
-        title='Test'
-        description='Testing...'
-        isOpen
-        onClose={() => {}}
-      ></Modal>
-    </div>
-  );
+  const { isOpen, onOpen } = useShopModal();
+
+  useEffect(() => {
+    if (!isOpen) onOpen();
+  }, [isOpen, onOpen]);
+
+  return <div className='p-4'>Root</div>;
 }
