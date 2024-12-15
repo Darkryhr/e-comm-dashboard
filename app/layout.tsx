@@ -2,6 +2,7 @@ import { ClerkProvider } from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import localFont from 'next/font/local';
 
+import { Toaster } from '@/components/ui/toaster';
 import { ModalProvider } from '@/providers/modal-provider';
 import './globals.css';
 
@@ -34,6 +35,7 @@ export default function RootLayout({
         >
           <ModalProvider />
           {children}
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>
