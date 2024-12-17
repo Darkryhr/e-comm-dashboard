@@ -40,11 +40,8 @@ export const ShopModal = () => {
       setLoading(true);
 
       const res = await axios.post('/api/shops', values);
-      console.log(res.data);
-      toast({
-        title: 'Great work!',
-        description: 'Your store has been created.',
-      });
+
+      window.location.assign(`/${res.data.id}`);
     } catch (error) {
       console.log(error);
       toast({
