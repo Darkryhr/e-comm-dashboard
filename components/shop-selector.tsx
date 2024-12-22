@@ -29,6 +29,7 @@ type PopoverTriggerProps = React.ComponentPropsWithoutRef<
 
 interface ShopSelectorProps extends PopoverTriggerProps {
   items: Shop[];
+  className?: string;
 }
 
 function ShopSelector({ className, items = [] }: ShopSelectorProps) {
