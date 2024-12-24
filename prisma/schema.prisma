@@ -14,9 +14,22 @@ datasource db {
 }
 
 model Shop {
+  id         String      @id @default(uuid())
+  name       String
+  userId     String
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime    @updatedAt
+  billBoards BillBoard[] @relation("ShopToBillBoard")
+}
+
+model BillBoard {
   id        String   @id @default(uuid())
-  name      String
-  userId    String
+  shopId    String
+  shop      Shop     @relation("ShopToBillBoard", fields: [shopId], references: [id])
+  label     String
+  imageUrl  String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@index([shopId])
 }
