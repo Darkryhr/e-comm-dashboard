@@ -60,9 +60,16 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
   const onSubmit = async (values: BillboardFormValues) => {
     try {
       setLoading(true);
+      if (initialData)
+        await axios.patch(
+          `/api/${params.shopId}/billboards/${params.billboardId}`,
+          values
+        );
+      else await axios.post(`/api/${params.shopId}/billboards`, values);
 
-      await axios.patch(`/api/shops/${params.shopId}`, values);
       router.refresh();
+      router.push(`/${params.shopId}/billboards`);
+
       toast({
         title: 'Success!',
         description: toastMsg,
@@ -83,12 +90,14 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
     try {
       setLoading(true);
 
-      await axios.delete(`/api/shops/${params.shopId}`);
+      await axios.delete(
+        `/api/${params.shopId}/billboards/${params.billboardId}`
+      );
       router.refresh();
       router.push('/');
       toast({
         title: 'Success!',
-        description: 'Shop was deleted successfully',
+        description: 'Billboard was deleted successfully',
       });
     } catch (error) {
       console.log(error);
