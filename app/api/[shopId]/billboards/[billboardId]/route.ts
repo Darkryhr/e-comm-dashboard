@@ -27,8 +27,6 @@ export async function PATCH(
 
     if (!shopByUserId) return new NextResponse('Unauthorized', { status: 403 });
 
-    console.log('SHOP_ID: ' + params.shopId);
-
     const billboard = await prismadb.billboard.updateMany({
       where: {
         id: params.billboardId,

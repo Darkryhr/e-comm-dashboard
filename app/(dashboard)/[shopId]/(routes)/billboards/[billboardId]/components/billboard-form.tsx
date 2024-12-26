@@ -94,7 +94,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
         `/api/${params.shopId}/billboards/${params.billboardId}`
       );
       router.refresh();
-      router.push('/');
+      router.push(`/${params.shopId}/billboards`);
       toast({
         title: 'Success!',
         description: 'Billboard was deleted successfully',
