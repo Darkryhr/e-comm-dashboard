@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { BillBoard } from '@prisma/client';
+import { Billboard } from '@prisma/client';
 import { Trash } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,7 +26,7 @@ import axios from 'axios';
 import { useParams, useRouter } from 'next/navigation';
 
 interface BillboardFormProps {
-  initialData: BillBoard | null;
+  initialData: Billboard | null;
 }
 
 type BillboardFormValues = z.infer<typeof formSchema>;
@@ -55,7 +55,7 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
     ? 'Edit a billboard'
     : 'Create a new billboard';
   const toastMsg = initialData ? 'Billboard updated!' : 'Billboard created!';
-  const action = initialData ? 'Svae changes' : 'Create';
+  const action = initialData ? 'Save changes' : 'Create';
 
   const onSubmit = async (values: BillboardFormValues) => {
     try {
@@ -67,8 +67,8 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
         );
       else await axios.post(`/api/${params.shopId}/billboards`, values);
 
-      router.refresh();
       router.push(`/${params.shopId}/billboards`);
+      router.refresh();
 
       toast({
         title: 'Success!',
